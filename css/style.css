@@ -15,6 +15,7 @@ body {
 
 
 canvas {
+    /* background-size: cover; */
     background-color: bisque;
     background-repeat: repeat;
     width: 100%;
