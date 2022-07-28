@@ -18,7 +18,7 @@ game.setAttribute("width", getComputedStyle(game)["width"]);
 
 
 window.addEventListener("DOMContentLoaded", function() {
-    astronaut = new Character(40, 90, "grey", 40, 80);
+    astronaut = new Character(40, 250, "grey", 40, 80);
     monster = new Character(120, 90, "green", 40, 50);
 
     const runGame = setInterval(gameLoop, 60);
@@ -82,6 +82,9 @@ function gameLoop() {
     astronaut.render();
 
 }
+
+
+
 
 function detectHit(player1, player2) {
     let hitTest = 
