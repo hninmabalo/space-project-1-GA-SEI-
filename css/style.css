@@ -7,7 +7,7 @@ body {
     padding-top: 1em;
     text-align: center;
     color: black;
-    background-image: url("https://imgur.com/YWuotPe.jpg");
+    /* background-image: url("https://imgur.com/YWuotPe.jpg"); */
     background-color: rgb(110, 110, 110);
     background-size: cover;
     background-repeat: space;
@@ -25,6 +25,7 @@ canvas {
 
 #container {
     max-width: 70em;
+    /* background-image: url("https://imgur.com/YWuotPe.jpg"); */
     background-color: blue;
     margin: 0 auto;
     padding: 1em;

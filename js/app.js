@@ -8,7 +8,7 @@ const movement = document.getElementById("movement");
 
 const ctx = game.getContext("2d");
 let astronaut;
-let alien;
+let monster;
 let crystal;
 
 
@@ -19,7 +19,7 @@ game.setAttribute("width", getComputedStyle(game)["width"]);
 
 window.addEventListener("DOMContentLoaded", function() {
     astronaut = new Character(40, 90, "grey", 40, 80);
-    alien = new Character(120, 90, "green", 40, 50);
+    monster = new Character(120, 90, "green", 40, 50);
 
     const runGame = setInterval(gameLoop, 60);
 });
@@ -43,11 +43,11 @@ class Character {
 } 
 
 
-function addNewAlien() {
+function addNewMonster() {
     setTimeout(function() {
         let x = Math.floor(Math.random() * game.width) - 40;
         let y = Math.floor(Math.random() * game.height) - 80;
-        alien = new Character(x, y, "green", 40, 50);
+        monster = new Character(x, y, "green", 40, 50);
     }, 500);
     return true;
 }
@@ -74,10 +74,10 @@ function movementHander(e) {
 function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
     
-    if (alien.alive) {
-        alien.render();
+    if (monster.alive) {
+        monster.render();
 
-        let hit = detectHit(astronaut, alien);
+        let hit = detectHit(astronaut, monster);
     }
     astronaut.render();
 
@@ -94,8 +94,12 @@ function detectHit(player1, player2) {
         let newScore = `Score: ${Number(score.textContent) + 10}`;
         score.textContent = newScore;
 
-        return addNewAlien();
+        return addNewMonster();
     } else {
         return false;
     }
 }
+
+ start.addEventListener('click', function() {
+     start.gameloop();
+  });
