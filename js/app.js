@@ -1,7 +1,8 @@
-console.log("space");
+console.log("Space");
 
 const game = document.getElementById("game");
 const score = document.getElementById("score");
+const health = document.getElementById("health");
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
 const movement = document.getElementById("movement");
@@ -9,22 +10,15 @@ const movement = document.getElementById("movement");
 const ctx = game.getContext("2d");
 let astronaut;
 let monster;
-let crystal;
 
-
-game.setAttribute("height", getComputedStyle(game)["height"]);
 game.setAttribute("width", getComputedStyle(game)["width"]);
-
-
+game.setAttribute("height", getComputedStyle(game)["height"]);
 
 window.addEventListener("DOMContentLoaded", function() {
-    astronaut = new Character(40, 250, "grey", 40, 80);
-    monster = new Character(120, 90, "green", 40, 50);
+    astronaut = new Character(10, 20, "grey", 20, 20);
 
     const runGame = setInterval(gameLoop, 60);
 });
-
-document.addEventListener("keydown", movementHander);
 
 class Character {
     constructor(x, y, color, width, height) {
@@ -34,17 +28,55 @@ class Character {
         this.width = width;
         this.height = height;
         this.alive = true;
+        
+
+        this.render = function() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, image1, this.width, this.height);
+        }
+    }
+} 
+
+class Opponents {
+    constructor() {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.speed = 1.5;
+        this.alive = true;
+
+        this.render = function() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y -= this.speed, this.width, this.height);
+        }
+    }
+
+}
+
+// const monster = new Opponents()
+
+class Projectile {
+    constructor(x, y, color, speed, width, height) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speed =- 1.5;
+        this.width = width;
+        this.height = height;
 
         this.render = function() {
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
-} 
 
+
+}
 
 function addNewMonster() {
     setTimeout(function() {
+        monster.alive = true;
         let x = Math.floor(Math.random() * game.width) - 40;
         let y = Math.floor(Math.random() * game.height) - 80;
         monster = new Character(x, y, "green", 40, 50);
@@ -94,7 +126,7 @@ function detectHit(player1, player2) {
         player1.x < player2.x + player2.width; 
 
     if (hitTest) {
-        let newScore = `Score: ${Number(score.textContent) + 10}`;
+        let newScore = Number(score.textContent) + 10;
         score.textContent = newScore;
 
         return addNewMonster();
@@ -103,6 +135,4 @@ function detectHit(player1, player2) {
     }
 }
 
- start.addEventListener('click', function() {
-     start.gameloop();
-  });
+ 
