@@ -7,7 +7,6 @@ body {
     padding-top: 1em;
     text-align: center;
     color: black;
-    /* background-image: url("https://imgur.com/YWuotPe.jpg"); */
     background-color: rgb(110, 110, 110);
     background-size: cover;
     background-repeat: space;
@@ -16,7 +15,7 @@ body {
 
 
 canvas {
-    /* background-size: cover; */
+
     background-color: bisque;
     background-repeat: repeat;
     width: 100%;
@@ -25,7 +24,6 @@ canvas {
 
 #container {
     max-width: 70em;
-    /* background-image: url("https://imgur.com/YWuotPe.jpg"); */
     background-color: blue;
     margin: 0 auto;
     padding: 1em;
@@ -65,4 +63,6 @@ main {
     grid-area: btm-right;
 }
 
-
+button {
+    background-color: brown;
+}

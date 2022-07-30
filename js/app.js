@@ -15,12 +15,12 @@ game.setAttribute("width", getComputedStyle(game)["width"]);
 game.setAttribute("height", getComputedStyle(game)["height"]);
 
 window.addEventListener("DOMContentLoaded", function() {
-    astronaut = new Character(10, 20, "grey", 20, 20);
+    astronaut = new Player(10, 20, "grey", 20, 20);
 
     const runGame = setInterval(gameLoop, 60);
 });
 
-class Character {
+class Player {
     constructor(x, y, color, width, height) {
         this.x = x;
         this.y = y;
