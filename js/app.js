@@ -12,7 +12,7 @@ const bulletimg = document.getElementById("bulletimg");
 
 const ctx = game.getContext("2d");
 let astronaut;
-// let monster;
+let alien;
 
 
 window.addEventListener("DOMContentLoaded", function() {
@@ -41,6 +41,7 @@ class Player {
         }
     }
 } 
+
 
 function movementHander(e) {
     console.log("movement", e.key);
@@ -76,31 +77,48 @@ function movementHander(e) {
 }
 
 
+
+
 function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
 
+    if (alien.alive) {
+        alien.render();
+        let hit = detectHit (astronaut, alien);
+    }
+    
     astronaut.render();  
     alien.render();
 
 }
 
+function addNewAlien() {
+    alien.alive = false;
+    setTimeout(function() {
+        let x = Math.floor (Math.random() * game.width) - 40;
+        let y = Math.floor (Math.random() * game.height) - 80;
+        alien = new Player(x, y, enemyimg, 60, 80);
+    }, 1000);
+    return true;
+
+}
 
 
+function detectHit(player1, player2) {
+    let hitTest = 
+        player1.y + player1.height > player2.y && 
+        player1.y < player2.y + player2.height &&
+        player1.x + player1.width > player2.x &&
+        player1.x < player2.x + player2.width; 
 
-// function detectHit(player1, player2) {
-//     let hitTest = 
-//         player1.y + player1.height > player2.y && 
-//         player1.y < player2.y + player2.height &&
-//         player1.x + player1.width > player2.x &&
-//         player1.x < player2.x + player2.width; 
+    if (hitTest) {
+        let newScore = Number(score.textContent) + 10;
+        score.textContent = newScore;
+        return addNewAlien();
 
-//     if (hitTest) {
-//         let newScore = Number(score.textContent) + 10;
-//         score.textContent = newScore;
-
-//     } else {
-//         return false;
-//     }
-// }
+    } else {
+        return false;
+    }
+}
 
  
