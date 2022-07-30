@@ -6,16 +6,20 @@ html,body {
 body {
     padding-top: 1em;
     text-align: center;
-    color: black;
+    color: rgb(255, 255, 255);
+    background-image: url("../img/sp.jpg");
     background-color: rgb(110, 110, 110);
     background-size: cover;
     background-repeat: space;
 
 }
-
+h2 {
+    color: white;
+}
 
 canvas {
-
+    /* background-image: url("../img/background.png"); */
+    background-image: url("../img/sp.jpg");
     background-color: bisque;
     background-repeat: repeat;
     width: 100%;
@@ -24,6 +28,7 @@ canvas {
 
 #container {
     max-width: 70em;
+    background-image: url("../img/sp.jpg");
     background-color: blue;
     margin: 0 auto;
     padding: 1em;
@@ -40,6 +45,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("../img/background.png");
     background-color: brown;
 }
 
@@ -64,5 +70,7 @@ main {
 }
 
 button {
+    background-image: url("../img/background.png");
     background-color: brown;
 }
+
