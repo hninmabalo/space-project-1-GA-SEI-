@@ -26,6 +26,7 @@ document.addEventListener("keydown", movementHander);
 game.setAttribute("width", getComputedStyle(game)["width"]);
 game.setAttribute("height", getComputedStyle(game)["height"]);
 
+
 class Player {
     constructor(x, y, image, width, height) {
         this.x = x;
@@ -41,7 +42,6 @@ class Player {
         }
     }
 } 
-
 
 function movementHander(e) {
     console.log("movement", e.key);
@@ -93,14 +93,14 @@ function gameLoop() {
 }
 
 function addNewAlien() {
+
     alien.alive = false;
     setTimeout(function() {
         let x = Math.floor (Math.random() * game.width) - 40;
-        let y = Math.floor (Math.random() * game.height) - 80;
+        let y = Math.floor (Math.random() * game.height) - 40;
         alien = new Player(x, y, enemyimg, 60, 80);
     }, 1000);
     return true;
-
 }
 
 
@@ -121,4 +121,3 @@ function detectHit(player1, player2) {
     }
 }
 
- 
