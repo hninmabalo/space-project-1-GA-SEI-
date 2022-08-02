@@ -41,7 +41,8 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/background.png");
+    background: linear-gradient(to right, rgb(7, 2, 98), rgb(19, 63, 242), rgb(220, 103, 255), rgb(96, 2, 136));
+    /* background-image: url("../img/background.png"); */
 }
 
 #top-left {
@@ -65,6 +66,7 @@ main {
 }
 
 button {
-    background-image: url("../img/background.png");
+    background: linear-gradient(to right, rgb(7, 2, 98), rgb(19, 63, 242), rgb(220, 103, 255), rgb(96, 2, 136));
+    /* background-image: url("../img/background.png"); */
 }
 

@@ -13,13 +13,14 @@ const bulletimg = document.getElementById("bulletimg");
 
 const ctx = game.getContext("2d"); // 2-dimensional canvas will display
 let astronaut;
-// let alien;
-let bullet;
+let alien;
+
 
 window.addEventListener("DOMContentLoaded", function() {
     astronaut = new Player(20, 80, playerimg, 50, 70);
     // alien = new Opponents(650, 200, enemyimg, 60, 80);
-
+    alien = new Opponents();
+    
     const runGame = setInterval(gameLoop, 60);
 });
 
@@ -65,25 +66,36 @@ class Player {
 // }
 
 
-
+let numberOfAlien = 30;
 let arrayAlien = [];
+
 class Opponents {
     constructor() {
         this.width = 70;
         this.height = 70;
         this.x = game.width;
-        this.y = Math.random() * (game.height - this.height);
-        this.distancesX = Math.random() * 5 + 3;
-        this.distancesY = Math.random() * 5 - 2.5;
+        this.y = Math.random() * game.height;
+        this.speed = Math.random() * 4 - 2;
+        this.distancesX = Math.random() * 3 + 1;
+        this.distancesY = Math.random() * 3 - 1;
+        this.alive = true;
     }
     update() {
         this.x -= this.distancesX;
+        this.x += this.speed;
+        this.y += this.speed;
+        if (this.x + this.width < 0) {
+            this.x = game.width;
+        }
+        
     }
     draw() {
         ctx.drawImage(alienimg, this.x, this.y, this.width, this.height);
     }
 }
-
+for (let i = 0; i < numberOfAlien; i++) {
+    arrayAlien.push(new Opponents());
+}
 
 
 function movementHander(e) {
@@ -119,16 +131,19 @@ function movementHander(e) {
     }
 }
 
-const alien = new Opponents();
+// const alien = new Opponents();
 
-function gameLoop(timestamp) {
+function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
-    alien.update();
-    alien.draw();
-        // if (alien.alive) {
-    //     alien.render()
-    //     let hit = detectHit (astronaut, alien);
-    // }
+    if (arrayAlien.forEach( alien => {
+        alien.update();
+        alien.draw();
+    })) {
+    
+   
+       
+        let hit = detectHit (astronaut, arrayAlien);
+    }
     astronaut.render();
     
      
@@ -155,12 +170,17 @@ function detectHit(player1, player2) {
         player1.y < player2.y + player2.height &&
         player1.x + player1.width > player2.x &&
         player1.x < player2.x + player2.width; 
-
+    // let hitTest =
+    //     player1.x > player2.x + player2.width ||
+    //     player1.x + player1.width < player2.x ||
+    //     player1.y > player2.y + player2.height ||
+    //     player1.y + player1.height < player2.y;
+    
     if (hitTest) {
         let newScore = Number(score.textContent) + 10;
         score.textContent = newScore;
         // return addNewAlien();
-        alien.alive = false;
+        // alien.alive = false;
 //     } else {
 //         return false;
     }
