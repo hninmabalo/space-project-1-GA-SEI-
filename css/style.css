@@ -10,7 +10,6 @@ body {
     background-image: url("../img/sp.jpg");
     background-size: cover;
     background-repeat: space;
-
 }
 h2 {
     color: rgb(2, 255, 44);
@@ -31,14 +30,14 @@ canvas {
     padding: 1em;
     display: grid;
     grid-gap: 1em;
-    grid-template-rows: .50fr .10fr .50fr;
-    grid-template-columns: .50fr .10r .50fr;
+    grid-template-rows: .25fr .5fr .25fr;
+    grid-template-columns: .25fr .5r .25fr;
     grid-template-areas: "top-left game top-right"
-                         "center-left game center-right"
+                         "center-left game btm-right"
                          "btm-left game btm-right";
 }
 
-#top-left,  #top-right, #btm-left, #btm-right, #center-right{
+#top-left,  #top-right, #btm-left, #btm-right {
     display: flex;
     justify-content: center;
     align-items: center;
