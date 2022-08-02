@@ -119,12 +119,13 @@ function movementHander(e) {
     }
 }
 
-// const alien = new Opponents();
+const alien = new Opponents();
 
 function gameLoop(timestamp) {
     ctx.clearRect(0, 0, game.width, game.height);
-    
-    // if (alien.alive) {
+    alien.update();
+    alien.draw();
+        // if (alien.alive) {
     //     alien.render()
     //     let hit = detectHit (astronaut, alien);
     // }
