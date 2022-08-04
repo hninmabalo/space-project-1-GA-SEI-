@@ -44,7 +44,7 @@ class Player {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
     }
-} 
+};
 
 
 let numberOfAlien = 80;
@@ -77,7 +77,7 @@ class Opponents {
 }
 for (let i = 0; i < numberOfAlien; i++) {
     arrayAlien.push(new Opponents());
-}
+};
 
 
 function movementHander(e) {
@@ -98,7 +98,7 @@ function movementHander(e) {
             break;
         
     }
-}
+};
 
 //game processes
 function gameLoop() {
@@ -115,7 +115,7 @@ function gameLoop() {
     }
 
    astronaut.render();
-}  
+};
 
 //collision detection
     function detectHit() {
@@ -136,6 +136,4 @@ function gameLoop() {
               } 
             } 
     
-        }
-
-    
+        };
