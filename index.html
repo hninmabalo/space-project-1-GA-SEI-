@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
+    <h1>THE SPACE</h1>
     <div id="container">
      <aside id="top-left"><h2 id="score1">Score: <span id="score">0</span></h2></aside>
      <button><aside id="top-right"><h2 id="start">Start Game</h2></aside></button>
      <main>
-        <canvas id="game" width="400" height="400">
+        <canvas id="game" width="400" height="350">
             <img src="./img/astronaut.png" alt="astronaut" id="playerimg" style="display: none;"> 
             <img src="./img/monster.png" alt="alien" id="alienimg" style="display: none;" >
             <img src="./img/bullet.png" alt="bullet" id="bullet" style="display: none;">
@@ -23,6 +24,7 @@
      <aside id="center-left"><h2 id="movement"></h2></aside>
      <!-- <button><aside id="center-right"><h2 id="reset">Reset Game</h2></aside></button> -->
     </div>
+    <div id="result"></div>
 <script src="./js/app.js"></script>  
 </body>
 </html>

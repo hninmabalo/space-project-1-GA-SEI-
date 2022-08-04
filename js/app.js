@@ -18,10 +18,9 @@ let alien;
 
 window.addEventListener("DOMContentLoaded", function() {
     astronaut = new Player(20, 80, playerimg, 50, 70);
-    // alien = new Opponents(650, 200, enemyimg, 60, 80);
     alien = new Opponents();
     
-    const runGame = setInterval(gameLoop, 60);
+    const runGame = setInterval(gameLoop, 80);
 });
 
 
@@ -47,26 +46,8 @@ class Player {
     }
 } 
 
-    
-// class Opponents {
-//     constructor(x, y, image, width, height) {
-//         this.x = x;
-//         this.y = y;
-//         this.image = image;
-//         this.width = width;
-//         this.height = height;
-//         this.speed = 1.5;
-//         this.alive = true;
 
-//         this.render = function() {
-//             ctx.drawImage(this.image, this.x -= this.speed, this.y, this.width, this.height);
-//         }
-    
-//     }
-// }
-
-
-let numberOfAlien = 70;
+let numberOfAlien = 80;
 let arrayAlien = [];
 
 class Opponents {
@@ -75,7 +56,7 @@ class Opponents {
         this.height = 70;
         this.x = game.width;
         this.y = Math.random() * game.height;
-        this.speed = Math.random() * 4 - 2;
+        this.speed = Math.random() * 4 - 1;
         this.distancesX = Math.random() * 5 + 3;
         this.distancesY = Math.random() * 5 - 2.5;
         this.alive = true;
@@ -115,62 +96,28 @@ function movementHander(e) {
         case "ArrowRight":
             astronaut.x + 10 <= game.width ? (astronaut.x += 10) : null;
             break;
-
-        // case "w":
-        //     alien.y - 30 >= 0 ? (alien.y -= 10) : null;
-        //     break;
-        // case "a":
-        //     alien.x - 10 >= 0 ? (alien.x -= 10) : null;
-        //     break;
-        // case "s":
-        //     alien.y + 10 <= game.height ? (alien.y += 10) : null;
-        //     break;
-        // case "d":
-        //     alien.x + 10 <= game.width ? (alien.x += 10) : null;
-        //     break;
         
     }
 }
 
-// const alien = new Opponents();
-
+//game processes
 function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
 
     arrayAlien.forEach( alien => {
         alien.update();
         alien.draw();
+        // console.log(arrayAlien);
     });
     if (alien.alive) {
+        
         let hit = detectHit();
     }
 
    astronaut.render();
 }  
 
-
-
-
-
-// function addNewAlien() {
-
-//     alien.alive = false;
-//     setTimeout(function() {
-//         let x = Math.floor (Math.random() * game.width) - 40;
-//         let y = Math.floor (Math.random() * game.height) - 40;
-//         alien = new Opponents();
-//     }, 1000);
-//     return true;
-// }
-
-
-// function detectHit(player1, player2) {
-//     let hitTest = 
-//         player1.y + player1.height > player2.y && 
-//         player1.y < player2.y + player2.height &&
-//         player1.x + player1.width > player2.x &&
-//         player1.x < player2.x + player2.width; 
-
+//collision detection
     function detectHit() {
         for(i = 0; i < arrayAlien.length; i++) {
             if( astronaut.x < arrayAlien[i].x + arrayAlien[i].width &&
@@ -178,9 +125,10 @@ function gameLoop() {
                 astronaut.y < arrayAlien[i].y + arrayAlien[i].height &&
                 astronaut.y + astronaut.height > arrayAlien[i].y) {
                 arrayAlien.splice(i ,1)
+                console.log('hit the alien'); //test the collision 
                 
                 if (!arrayAlien[i].counted) {
-                let newScore = Number(score.textContent) + 1;
+                let newScore = Number(score.textContent) + 1; //add 1 point when you hit each alien
                 score.textContent = newScore;
                 arrayAlien[i].counted = true;
                 arrayAlien.splice(i, 1);
@@ -190,11 +138,4 @@ function gameLoop() {
     
         }
 
-    // if (hitTest) {
-    //     let newScore = Number(score.textContent) + 10;
-    //     score.textContent = newScore;
-    //     // return addNewAlien();
-    //     alien.alive = false;
-    // } else {
-    //     return false;
-    // }
+    
