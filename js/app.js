@@ -66,7 +66,7 @@ class Player {
 // }
 
 
-let numberOfAlien = 50;
+let numberOfAlien = 70;
 let arrayAlien = [];
 
 class Opponents {
@@ -76,8 +76,8 @@ class Opponents {
         this.x = game.width;
         this.y = Math.random() * game.height;
         this.speed = Math.random() * 4 - 2;
-        this.distancesX = Math.random() * 5 + 1;
-        // this.distancesY = Math.random() * 3 - 1;
+        this.distancesX = Math.random() * 5 + 3;
+        this.distancesY = Math.random() * 5 - 2.5;
         this.alive = true;
         this.counted = false;
     }
@@ -141,7 +141,7 @@ function gameLoop() {
         alien.update();
         alien.draw();
     });
-    if (astronaut.alive) {
+    if (alien.alive) {
         let hit = detectHit();
     }
 
@@ -178,10 +178,13 @@ function gameLoop() {
                 astronaut.y < arrayAlien[i].y + arrayAlien[i].height &&
                 astronaut.y + astronaut.height > arrayAlien[i].y) {
                 arrayAlien.splice(i ,1)
-            
-                let newScore = Number(score.textContent) + 10;
+                
+                if (!arrayAlien[i].counted) {
+                let newScore = Number(score.textContent) + 1;
                 score.textContent = newScore;
-                alien.alive = false;
+                arrayAlien[i].counted = true;
+                arrayAlien.splice(i, 1);
+                }
               } 
             } 
     
