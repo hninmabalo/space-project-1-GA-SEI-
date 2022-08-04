@@ -66,7 +66,7 @@ class Player {
 // }
 
 
-let numberOfAlien = 30;
+let numberOfAlien = 50;
 let arrayAlien = [];
 
 class Opponents {
@@ -76,9 +76,10 @@ class Opponents {
         this.x = game.width;
         this.y = Math.random() * game.height;
         this.speed = Math.random() * 4 - 2;
-        this.distancesX = Math.random() * 3 + 1;
-        this.distancesY = Math.random() * 3 - 1;
+        this.distancesX = Math.random() * 5 + 1;
+        // this.distancesY = Math.random() * 3 - 1;
         this.alive = true;
+        this.counted = false;
     }
     update() {
         this.x -= this.distancesX;
@@ -135,19 +136,18 @@ function movementHander(e) {
 
 function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
-    if (arrayAlien.forEach( alien => {
+
+    arrayAlien.forEach( alien => {
         alien.update();
         alien.draw();
-    })) {
-    
-   
-       
-        let hit = detectHit (astronaut, arrayAlien);
+    });
+    if (astronaut.alive) {
+        let hit = detectHit();
     }
-    astronaut.render();
-    
-     
-}
+
+   astronaut.render();
+}  
+
 
 
 
@@ -158,30 +158,40 @@ function gameLoop() {
 //     setTimeout(function() {
 //         let x = Math.floor (Math.random() * game.width) - 40;
 //         let y = Math.floor (Math.random() * game.height) - 40;
-//         alien = new Player(x, y, enemyimg, 60, 80);
+//         alien = new Opponents();
 //     }, 1000);
 //     return true;
 // }
 
 
-function detectHit(player1, player2) {
-    let hitTest = 
-        player1.y + player1.height > player2.y && 
-        player1.y < player2.y + player2.height &&
-        player1.x + player1.width > player2.x &&
-        player1.x < player2.x + player2.width; 
-    // let hitTest =
-    //     player1.x > player2.x + player2.width ||
-    //     player1.x + player1.width < player2.x ||
-    //     player1.y > player2.y + player2.height ||
-    //     player1.y + player1.height < player2.y;
+// function detectHit(player1, player2) {
+//     let hitTest = 
+//         player1.y + player1.height > player2.y && 
+//         player1.y < player2.y + player2.height &&
+//         player1.x + player1.width > player2.x &&
+//         player1.x < player2.x + player2.width; 
+
+    function detectHit() {
+        for(i = 0; i < arrayAlien.length; i++) {
+            if( astronaut.x < arrayAlien[i].x + arrayAlien[i].width &&
+                astronaut.x + astronaut.width > arrayAlien[i].x &&
+                astronaut.y < arrayAlien[i].y + arrayAlien[i].height &&
+                astronaut.y + astronaut.height > arrayAlien[i].y) {
+                arrayAlien.splice(i ,1)
+            
+                let newScore = Number(score.textContent) + 10;
+                score.textContent = newScore;
+                alien.alive = false;
+              } 
+            } 
     
-    if (hitTest) {
-        let newScore = Number(score.textContent) + 10;
-        score.textContent = newScore;
-        // return addNewAlien();
-        // alien.alive = false;
-//     } else {
-//         return false;
-    }
-}
+        }
+
+    // if (hitTest) {
+    //     let newScore = Number(score.textContent) + 10;
+    //     score.textContent = newScore;
+    //     // return addNewAlien();
+    //     alien.alive = false;
+    // } else {
+    //     return false;
+    // }
