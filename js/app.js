@@ -79,7 +79,7 @@ class Opponents {
 function spawnOpponents() {
     setInterval(() => {
         arrayAlien.push(new Opponents(alienimg, 80, 80))
-    }, 750); // alien appears faster than asteroid by using different interval time 
+    }, 750); // alien will appear more often than asteroid by using different interval time 
     setInterval(() => {
         arrayAsteroid.push(new Opponents(asteroidimg, 50, 50))
     }, 3000);
