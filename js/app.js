@@ -9,7 +9,6 @@ const reset = document.getElementById("reset");
 const movement = document.getElementById("movement");
 const playerimg = document.getElementById("playerimg");
 const alienimg = document.getElementById("alienimg");
-const bulletimg = document.getElementById("bulletimg");
 
 const ctx = game.getContext("2d"); // 2-dimensional canvas will display
 let astronaut;
@@ -18,8 +17,8 @@ let alien;
 
 window.addEventListener("DOMContentLoaded", function() {
     astronaut = new Player(20, 80, playerimg, 50, 70);
-    alien = new Opponents();
-    
+    alien = new Opponents(alien);
+    spawnAlien();
     const runGame = setInterval(gameLoop, 80);
 });
 
@@ -47,38 +46,43 @@ class Player {
 };
 
 
-let numberOfAlien = 80;
+// let numberOfAlien = 80;
 let arrayAlien = [];
 
 class Opponents {
-    constructor() {
+    constructor(image) {
         this.width = 70;
         this.height = 70;
         this.x = game.width;
         this.y = Math.random() * game.height;
-        this.speed = Math.random() * 4 - 1;
+        this.speed = Math.random();
         this.distancesX = Math.random() * 5 + 3;
         this.distancesY = Math.random() * 5 - 2.5;
         this.alive = true;
         this.counted = false;
+        this.image = image;
     }
     update() {
         this.x -= this.distancesX;
         this.x += this.speed;
         this.y += this.speed;
-        if (this.x + this.width < 0) {
-            this.x = game.width;
-        }
+        // if (this.x + this.width < 0) {
+        //     this.x = game.width;
+        // }
         
     }
     draw() {
-        ctx.drawImage(alienimg, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 }
-for (let i = 0; i < numberOfAlien; i++) {
-    arrayAlien.push(new Opponents());
-};
-
+// for (let i = 0; i < numberOfAlien; i++) {
+//     arrayAlien.push(new Opponents());
+// };
+function spawnAlien() {
+    setInterval(() => {
+        arrayAlien.push(new Opponents(alienimg))
+    }, 750);
+}
 
 function movementHander(e) {
     console.log("movement", e.key);
@@ -112,8 +116,9 @@ function gameLoop() {
     if (alien.alive) {
         
         let hit = detectHit();
-    }
 
+    }
+   
    astronaut.render();
 };
 
