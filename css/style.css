@@ -70,3 +70,7 @@ button {
     /* background-image: url("../img/background.png"); */
 }
 
+footer {
+    color: rgb(112, 112, 114);
+    font-style: italic;
+}
