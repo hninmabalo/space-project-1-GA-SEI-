@@ -2,7 +2,7 @@
 
 The astronaut is in the space to collect alien but the asteroid are coming crazy. 
 
-To play `Space` game online visit [Space Online Game]()
+To play `Space` game online visit at: [Space Online Game](https://hninmabalo.github.io/space-project-1-GA-SEI-/)
 
 <hr />
 
@@ -28,7 +28,7 @@ All of the character images in the game drawn by the game creater by using [Pisk
 
 ## Initial Wireframes 
 
-This is how it start from the beginning. 
+This is how it start at the beginning. 
 
 ![display](img/game%20display%20scratch.png)
 
@@ -38,7 +38,7 @@ Logic for the function of the game.
 
 ## Game Screen:
 
-![game]
+![game](img/Game%20display.png)
 
 <hr />
 
@@ -85,7 +85,7 @@ Grid for `container`
 }
 ```
 
-`canvas` styling in css
+Game `canvas` styling in css
 
 ```css
 canvas {
@@ -177,4 +177,4 @@ function gameLose() {
 
 ## Credit
 
-Space background image is downloaded from [imgur](https://imgur.com/YWuotPe.jpg)
+Space background image is downloaded from [Imgur: The magic of the internet ](https://imgur.com/YWuotPe.jpg)
