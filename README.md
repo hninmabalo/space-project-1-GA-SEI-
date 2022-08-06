@@ -22,7 +22,8 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 
 ## Technologies
 
-* HTML 
+* HTML
+* HTML5-canvas
 * CSS
 * JavaScript 
 
