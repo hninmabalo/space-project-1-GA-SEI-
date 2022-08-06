@@ -28,14 +28,6 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 
 <hr />
 
-## Art Drawing application 
-
-All of the character images in the game drawn by the game creater by using [Piskelapp](https://www.piskelapp.com/). One of the process of drawing down below:
-
-![drawingArt](img/asteroid%20piskel.png)
-
-<hr />
-
 ## Initial Wireframes 
 
 This is how it started at the beginning. 
@@ -183,6 +175,14 @@ function gameLose() {
     }
 };
 ```
+<hr />
+
+## Art Drawing application 
+
+All of the character images in the game drawn by the game creater by using [Piskelapp](https://www.piskelapp.com/). One of the process of drawing down below:
+
+![drawingArt](img/asteroid%20piskel.png)
+
 <hr />
 
 ## Credit
