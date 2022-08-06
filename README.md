@@ -6,9 +6,13 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 
 <hr />
 
+## Getting Started
+
+* Fork and clone this repository to local computer
+
 ## How to play
 
-The game can simply play online on the website. The player is able to control with the `arrow keys` to move the astronaut around on the page. The asronaut has to collect the aliens to gain points while avoiding the asteroids not to lose lives. The game will be over when the player has `0` health points.
+The game can simply play online on desktop. The player is able to control with the `arrow keys` to move the astronaut around on the page. The asronaut has to collect the aliens to gain points while avoiding the asteroids not to lose lives. The game will be over when the player has `0` health points.
 
 <hr />
 
