@@ -149,7 +149,36 @@ class Opponents {
     }
 };
 ```
+Game processes
 
+```javascript
+function gameLoop() {
+    ctx.clearRect(0, 0, game.width, game.height);
+
+    arrayAlien.forEach( alien => {
+        alien.update();
+        alien.draw();
+    });
+
+    arrayAsteroid.forEach( asteroid => {
+        asteroid.update();
+        asteroid.draw();
+    });
+
+    
+    if (astronaut.alive) {
+    alienHit();
+    asteroidHit();
+    } else {
+        return false;
+    }
+
+   astronaut.render();
+
+   gameLose();
+
+};
+```
 Spawning function for the opponets to appear out form the screen 
 
 ```javascript
