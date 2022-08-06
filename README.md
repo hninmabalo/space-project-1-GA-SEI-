@@ -8,13 +8,17 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 
 ## Getting Started
 
-* Fork and clone this repository to local computer
+* Fork and clone this repository to local computer.
+
+* `html`, `css`, `javaScript`, and `img` files are created separately.
+
+* All of the images that used in this repository are uploaded in `img` file.
 
 <hr />
 
 ## How to play
 
-* The game is one player game with AI controls. 
+* The game is one player 2d game with AI controls. 
 
 * The game can simply play in the browser on desktop. The player is able to control with the `arrow keys` to move the astronaut around on the page. The asronaut has to collect the aliens to gain points while avoiding the asteroids not to lose lives. The game will be over when the player has `0` health points.
 
@@ -25,7 +29,9 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 * HTML
 * HTML5-canvas
 * CSS
+* CSS-grid
 * JavaScript 
+* DOM manipulation
 
 <hr />
 
