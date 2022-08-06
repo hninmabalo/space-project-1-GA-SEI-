@@ -1,6 +1,6 @@
 # Space
 
-The astronaut is in the space to collect alien but the asteroid are coming crazy. 
+The astronaut is in the space to collect aliens but the asteroids are flying through. 
 
 To play `Space` game online visit at: [Space Online Game](https://hninmabalo.github.io/space-project-1-GA-SEI-/)
 
@@ -8,7 +8,7 @@ To play `Space` game online visit at: [Space Online Game](https://hninmabalo.git
 
 ## How to play
 
-It is so simple to play this space game on the website. The player is able to controls `arrow keys` to move the astronaut around on the page. The asronaut has to collect the alien to gain score and avoid the asteroid not to lose health. The game will be over when the player has `0` health points.
+The game can simply play online on the website. The player is able to control with the `arrow keys` to move the astronaut around on the page. The asronaut has to collect the aliens to gain points while avoiding the asteroids not to lose lives. The game will be over when the player has `0` health points.
 
 <hr />
 
@@ -28,11 +28,11 @@ All of the character images in the game drawn by the game creater by using [Pisk
 
 ## Initial Wireframes 
 
-This is how it start at the beginning. 
+This is how it started at the beginning. 
 
 ![display](img/game%20display%20scratch.png)
 
-Logic for the function of the game.
+Logic for the functions of the game.
 
 ![gamefunction](img/game%20function%20scratch%20.png)
 
@@ -60,14 +60,14 @@ Creating `canvas` for the game and `layout` by using grid method.
         </canvas>
      </main>
      <aside id="btm-left"><h2>Health: <span id="health">3</span></h2></aside>
-     <aside id="btm-right"><h2>Game Instruction:<br><br>* collect the alien<br> * avoid the asteroid <br> <br>* use arrow keys<br> to control <br>the astronaut</h2></aside>
+     <aside id="btm-right"><h2>Game Instruction:<br><br>- collect the aliens<br>- avoid the asteroids<br> <br>- use arrow keys<br> to control <br>the astronaut</h2></aside>
      <aside id="center-left"><h2 id="movement"></h2></aside>
     </div>
 ```
 
 ### CSS
 
-Grid for `container`
+Grid for `container` 
 
 ```css
 #container {
@@ -85,7 +85,7 @@ Grid for `container`
 }
 ```
 
-Game `canvas` styling in css
+Game `canvas` styles in css
 
 ```css
 canvas {
@@ -141,7 +141,7 @@ class Opponents {
 };
 ```
 
-Spawning function for the opponets to comes out form the screen 
+Spawning function for the opponets to appear out form the screen 
 
 ```javascript
 function spawnOpponents() {
@@ -154,7 +154,7 @@ function spawnOpponents() {
 };
 ```
 
-Game is over when the player health is 0 and reseting the game function 
+Game is over when the player health is `0` and reseting the game function 
 
 ```javascript
 function gameLose() {
