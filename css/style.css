@@ -4,6 +4,7 @@ html,body {
 }
 
 body {
+    font-family: Arial, Helvetica, sans-serif;
     padding-top: 1em;
     text-align: center;
     color: rgb(2, 255, 44);
@@ -16,7 +17,6 @@ h2 {
 }
 
 canvas {
-    /* background-image: url("../img/background.png"); */
     background-image: url("../img/sp.jpg");
     background-repeat: repeat;
     width: 100%;
@@ -66,8 +66,8 @@ main {
 }
 
 button {
+    font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(to right, rgb(7, 2, 98), rgb(19, 63, 242), rgb(220, 103, 255), rgb(96, 2, 136));
-    /* background-image: url("../img/background.png"); */
 }
 
 footer {

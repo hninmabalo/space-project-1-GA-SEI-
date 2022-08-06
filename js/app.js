@@ -1,11 +1,10 @@
 console.log("Space"); //checking to see js file works 
 
-//game setup
+// game setup
 const game = document.getElementById("game");
 const score = document.getElementById("score");
 const health = document.getElementById("health");
 const start = document.getElementById("start");
-const reset = document.getElementById("reset");
 const movement = document.getElementById("movement");
 const playerimg = document.getElementById("playerimg");
 const alienimg = document.getElementById("alienimg");
@@ -13,13 +12,15 @@ const asteroidimg = document.getElementById("asteroidimg");
 const gameOver = document.getElementById("container");
 
 
-const ctx = game.getContext("2d"); // 2-dimensional canvas will display
+const ctx = game.getContext("2d"); // ctx = context // 2-dimensional canvas will display
 let astronaut; // character in the game
 let alien;  // character in the game
 let asteroid;  // character in the game
 
-let gameScore = 0;
-let playerHealth = 3;
+let gameScore = 0; //set game score variable 
+let playerHealth = 3; //set health variable 
+
+//============================ Event Listeners =====================//
 
 window.addEventListener("DOMContentLoaded", function() {
     astronaut = new Player(50, 150, playerimg, 60, 70);
@@ -29,6 +30,17 @@ window.addEventListener("DOMContentLoaded", function() {
 
     const runGame = setInterval(gameLoop, 60);
 });
+
+
+document.addEventListener("keydown", movementHander);
+
+// start game button
+start.addEventListener("click", function() {
+    spawnOpponents();
+    gameLoop();
+  });
+
+//================================================================//
 
 game.setAttribute("width", getComputedStyle(game)["width"]);
 game.setAttribute("height", getComputedStyle(game)["height"]);
@@ -50,7 +62,7 @@ class Player {
     }
 };
 
-//creating alien and asteroid array
+// creating alien and asteroid array
 let arrayAlien = [];
 let arrayAsteroid = [];
 
@@ -76,7 +88,7 @@ class Opponents {
     }
 };
 
-//spawning alien and asteroid
+// spawning alien and asteroid
 function spawnOpponents() {
     setInterval(() => {
         arrayAlien.push(new Opponents(alienimg, 60, 70))
@@ -86,9 +98,8 @@ function spawnOpponents() {
     }, 1750);
 };
 
-document.addEventListener("keydown", movementHander);
 
-//controling astronaut by using 'arrow' keys
+// controling astronaut by using 'arrow' keys
 function movementHander(e) {
     console.log("movement", e.key); // 'e' represents keydown
 
@@ -113,7 +124,7 @@ function movementHander(e) {
     }
 };
 
-//game processes
+// game processes
 function gameLoop() {
     ctx.clearRect(0, 0, game.width, game.height);
 
@@ -143,7 +154,7 @@ function gameLoop() {
 
 };
 
-//collision detection for hitting alien
+// collision detection for hitting alien
     function alienHit() {
         for(let i = 0; i < arrayAlien.length; i++) {
         
@@ -155,7 +166,7 @@ function gameLoop() {
                 console.log('hit the alien'); //test the collision 
                 
                 if (arrayAlien[i]) {
-                let newScore = gameScore += 1; //add 1 point when astronaut hit each alien
+                let newScore = gameScore += 1; //add points when astronaut hit alien
                 score.textContent = `${newScore}`;
                 arrayAlien.splice(i, 1);
                 }
@@ -175,7 +186,7 @@ function gameLoop() {
                 console.log('hit the asteroid'); //test the collision 
                 
                 if (arrayAsteroid[i]) {
-                let newHealth = playerHealth -= 1; //subtract 1 point when astronaut hit each asteroid
+                let newHealth = playerHealth -= 1; //subtract points when astronaut hit asteroid
                 health.textContent = `${newHealth}`;
                 arrayAsteroid.splice(i, 1);
                 
@@ -185,23 +196,22 @@ function gameLoop() {
     
         };
 
-//GameOver
+//GameOver and reset the page to play again
 function gameLose() {
     if (playerHealth < 1) {
         console.log("Game Over");
         game.remove();
         astronaut.alive = false;
 
-    }   
+    gameOver.textContent = `GAME OVER! Your Best Score is ${gameScore}! Click here to play again!`;
+    gameOver.style.fontSize = "x-large";
+    gameOver.style.cursor = "pointer";
+
+    gameOver.addEventListener("click", function() {
+        location.reload();
+    })
+    }
 };
-
-
-
-//start game button
-start.addEventListener('click', function() {
-    spawnOpponents();
-    gameLoop();
-  });
 
 
       
