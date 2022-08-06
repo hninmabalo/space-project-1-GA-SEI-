@@ -10,23 +10,25 @@ const movement = document.getElementById("movement");
 const playerimg = document.getElementById("playerimg");
 const alienimg = document.getElementById("alienimg");
 const asteroidimg = document.getElementById("asteroidimg");
+const gameOver = document.getElementById("container");
+
 
 const ctx = game.getContext("2d"); // 2-dimensional canvas will display
 let astronaut; // character in the game
 let alien;  // character in the game
 let asteroid;  // character in the game
 
+let gameScore = 0;
+let playerHealth = 3;
 
 window.addEventListener("DOMContentLoaded", function() {
-    astronaut = new Player(20, 80, playerimg, 50, 70);
-    alien = new Opponents(alienimg, 80, 80);
+    astronaut = new Player(50, 150, playerimg, 60, 70);
+    alien = new Opponents(alienimg, 60, 70);
     asteroid = new Opponents(asteroidimg, 50, 50);
-    spawnOpponents();
-    const runGame = setInterval(gameLoop, 80);
+   
+
+    const runGame = setInterval(gameLoop, 60);
 });
-
-
-document.addEventListener("keydown", movementHander);
 
 game.setAttribute("width", getComputedStyle(game)["width"]);
 game.setAttribute("height", getComputedStyle(game)["height"]);
@@ -48,7 +50,7 @@ class Player {
     }
 };
 
-//creating alien and asteroid
+//creating alien and asteroid array
 let arrayAlien = [];
 let arrayAsteroid = [];
 
@@ -63,7 +65,6 @@ class Opponents {
         this.distancesX = Math.random() * 5 + 3;
         this.distancesY = Math.random() * 5 - 2.5;
         this.alive = true;
-        this.count = false;
     }
     update() {
         this.x -= this.distancesX;
@@ -78,12 +79,14 @@ class Opponents {
 //spawning alien and asteroid
 function spawnOpponents() {
     setInterval(() => {
-        arrayAlien.push(new Opponents(alienimg, 80, 80))
+        arrayAlien.push(new Opponents(alienimg, 60, 70))
     }, 750); // alien will appear more often than asteroid by using different interval time 
     setInterval(() => {
         arrayAsteroid.push(new Opponents(asteroidimg, 50, 50))
-    }, 3000);
+    }, 1750);
 };
+
+document.addEventListener("keydown", movementHander);
 
 //controling astronaut by using 'arrow' keys
 function movementHander(e) {
@@ -126,13 +129,18 @@ function gameLoop() {
         // console.log(arrayAsteroid);
     });
 
-    if (alien.alive) {
-
-        alienHit();
-        asteroidHit();
+    
+    if (astronaut.alive) {
+    alienHit();
+    asteroidHit();
+    } else {
+        return false;
     }
-   
+
    astronaut.render();
+
+   gameLose();
+
 };
 
 //collision detection for hitting alien
@@ -140,16 +148,15 @@ function gameLoop() {
         for(let i = 0; i < arrayAlien.length; i++) {
         
             if( astronaut.x < arrayAlien[i].x + arrayAlien[i].width &&
-                astronaut.x + astronaut.width > arrayAlien[i].x &&
+                astronaut.x + asteroid.width > arrayAlien[i].x &&
                 astronaut.y < arrayAlien[i].y + arrayAlien[i].height &&
                 astronaut.y + astronaut.height > arrayAlien[i].y) {
                 arrayAlien.splice(i ,1)
                 console.log('hit the alien'); //test the collision 
                 
-                if (!arrayAlien[i].counted) {
-                let newScore = Number(score.textContent) + 1; //add 1 point when astronaut hit each alien
-                score.textContent = newScore;
-                arrayAlien[i].counted = true;
+                if (arrayAlien[i]) {
+                let newScore = gameScore += 1; //add 1 point when astronaut hit each alien
+                score.textContent = `${newScore}`;
                 arrayAlien.splice(i, 1);
                 }
               } 
@@ -167,13 +174,35 @@ function gameLoop() {
                 arrayAsteroid.splice(i ,1)
                 console.log('hit the asteroid'); //test the collision 
                 
-                if (!arrayAsteroid[i].count) {
-                let newHealth = Number(health.textContent) - 1; //subtract 1 point when astronaut hit each asteroid
-                health.textContent = newHealth;
-                arrayAsteroid[i].count = true;
+                if (arrayAsteroid[i]) {
+                let newHealth = playerHealth -= 1; //subtract 1 point when astronaut hit each asteroid
+                health.textContent = `${newHealth}`;
                 arrayAsteroid.splice(i, 1);
+                
                 }
               } 
             } 
     
         };
+
+//GameOver
+function gameLose() {
+    if (playerHealth < 1) {
+        console.log("Game Over");
+        game.remove();
+        astronaut.alive = false;
+
+    }   
+};
+
+
+
+//start game button
+start.addEventListener('click', function() {
+    spawnOpponents();
+    gameLoop();
+  });
+
+
+      
+  
